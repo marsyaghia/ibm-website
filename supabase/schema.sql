@@ -67,7 +67,7 @@ create index if not exists list_items_group_idx on public.list_items (group_key,
 comment on table public.list_items is 'Daftar pendek: statistik hero, poin Double Degree, fakta About. Dibedakan oleh group_key.';
 
 -- ---------- 3. Beranda ----------
--- icon: salah satu dari globe, book, briefcase, users, compass, award, chart, star — atau URL gambar
+-- icon: salah satu dari graduation-cap, award, users, languages, sparkles, plane, badge-check — atau URL gambar
 create table if not exists public.why_items (
   id           bigint generated always as identity primary key,
   icon         text not null default 'star',
@@ -78,7 +78,7 @@ create table if not exists public.why_items (
   created_at   timestamptz not null default now(),
   updated_at   timestamptz not null default now()
 );
-comment on table public.why_items is 'Beranda — kartu "Why IBM Asia?". icon: globe, book, briefcase, users, compass, award, chart, star, atau URL gambar.';
+comment on table public.why_items is 'Beranda — kartu "Why IBM Asia?". icon: graduation-cap, award, users, languages, sparkles, plane, badge-check, atau URL gambar.';
 
 create table if not exists public.partners (
   id           bigint generated always as identity primary key,
