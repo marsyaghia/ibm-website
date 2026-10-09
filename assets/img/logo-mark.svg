@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Logo IBM Institut Asia Malang">
+  <rect width="96" height="96" rx="20" fill="#173671"/>
+  <circle cx="48" cy="48" r="33" fill="none" stroke="#EBB213" stroke-width="2.5" stroke-opacity=".55"/>
+  <ellipse cx="48" cy="48" rx="14" ry="33" fill="none" stroke="#EBB213" stroke-width="2.5" stroke-opacity=".55"/>
+  <path d="M15 48h66" stroke="#EBB213" stroke-width="2.5" stroke-opacity=".55"/>
+  <text x="48" y="58" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="30" fill="#EBB213" letter-spacing="-1">IA</text>
+</svg>

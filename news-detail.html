@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id" class="cms-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-cms="news_detail.meta.title">Detail Berita — IBM Institut Asia Malang</title>
+<meta name="description" content="Baca berita terbaru IBM Institut Asia Malang." data-cms-content="news_detail.meta.description">
+<meta name="theme-color" content="#173671">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Detail Berita — IBM Institut Asia Malang" data-cms-content="news_detail.meta.title">
+<meta property="og:description" content="Baca berita terbaru IBM Institut Asia Malang." data-cms-content="news_detail.meta.description">
+<meta property="og:image" content="" data-cms-content="global.seo.og_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="news_detail">
+
+<a class="skip-link" href="#main" data-cms="global.a11y.skip_link">Langsung ke konten</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+
+  <!-- Artikel: header, gambar, isi, bagikan (dirender dari tabel news) -->
+  <div id="newsArticle" data-collection="news_detail"></div>
+
+  <!-- Tampil hanya bila artikel tidak ditemukan -->
+  <section class="section not-found">
+    <div class="container narrow">
+      <p class="eyebrow" data-cms="news_detail.not_found.eyebrow">404</p>
+      <h1 data-cms="news_detail.not_found.title">Berita tidak ditemukan</h1>
+      <p class="lead" data-cms="news_detail.not_found.text">Berita yang Anda cari mungkin sudah dihapus atau alamatnya berubah.</p>
+      <a class="btn btn-gold" href="news.html" data-cms="news_detail.not_found.cta" data-cms-href="news_detail.not_found.cta_url">Lihat semua berita</a>
+    </div>
+  </section>
+
+  <!-- Berita lainnya -->
+  <section class="section related-news" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section-head section-head-row">
+        <div>
+          <h2 id="related-title" data-cms="news_detail.related.title">Berita Lainnya</h2>
+        </div>
+        <a class="text-link" href="news.html" data-cms="news_detail.related.more_label" data-cms-href="news_detail.related.more_url">Lihat semua berita</a>
+      </div>
+      <div class="news-grid" data-collection="news_related" data-empty="hide"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/fallback-data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/cms.js"></script>
+<script src="assets/js/ui.js"></script>
+</body>
+</html>

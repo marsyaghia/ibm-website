@@ -1,0 +1,61 @@
+# =====================================================================
+# .htaccess — IBM Institut Asia Malang (cPanel / Apache / LiteSpeed)
+# Letakkan di public_html bersama index.html.
+# Seluruh blok memakai <IfModule>, jadi aman bila modul tertentu tidak aktif.
+# =====================================================================
+
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+# ---------- 1. Paksa HTTPS (aktifkan SETELAH SSL/AutoSSL berhasil terpasang) ----------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ---------- 2. Lindungi file tersembunyi & file pengembangan ----------
+<FilesMatch "^\.(?!well-known)">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(sql|py|md|log|bak|sh)$">
+  Require all denied
+</FilesMatch>
+
+# ---------- 3. Header keamanan ----------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+  Header always set Strict-Transport-Security "max-age=31536000" env=HTTPS
+
+  # Content-Security-Policy: hanya mengizinkan skrip milik sendiri, Google Fonts,
+  # dan koneksi API ke Supabase (*.supabase.co). Gambar boleh dari HTTPS mana pun
+  # (placehold.co, Supabase Storage, dsb).
+  # Bila Anda menambah layanan lain (Google Analytics, widget chat, peta, dll),
+  # tambahkan domainnya di direktif yang sesuai — lihat docs/DEPLOY-CPANEL.md.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://*.supabase.co; base-uri 'self'; form-action 'self'; frame-ancestors 'self'; object-src 'none'"
+</IfModule>
+
+# ---------- 4. Kompresi ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/json
+</IfModule>
+
+# ---------- 5. Cache browser ----------
+# HTML selalu dicek ulang (konten CMS ada di database, bukan di HTML).
+# CSS/JS/gambar boleh di-cache. Setelah mengubah CSS/JS, tambahkan ?v=2 pada tautan
+# di HTML atau naikkan IBM_CONFIG.CACHE_VERSION bila perlu menyegarkan cache data.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 week"
+  ExpiresByType application/javascript "access plus 1 week"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/webp "access plus 1 month"
+</IfModule>

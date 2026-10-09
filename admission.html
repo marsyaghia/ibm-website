@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id" class="cms-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-cms="admission.meta.title">Admission — IBM Institut Asia Malang</title>
+<meta name="description" content="Langkah pendaftaran, dokumen yang dibutuhkan, informasi beasiswa, dan biaya pendidikan IBM Institut Asia Malang." data-cms-content="admission.meta.description">
+<meta name="theme-color" content="#173671">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Admission — IBM Institut Asia Malang" data-cms-content="admission.meta.title">
+<meta property="og:description" content="Langkah pendaftaran, dokumen yang dibutuhkan, informasi beasiswa, dan biaya pendidikan IBM Institut Asia Malang." data-cms-content="admission.meta.description">
+<meta property="og:image" content="" data-cms-content="global.seo.og_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,500..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="admission">
+
+<a class="skip-link" href="#main" data-cms="global.a11y.skip_link">Langsung ke konten</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow" data-cms="admission.hero.eyebrow">Penerimaan Mahasiswa Baru</p>
+      <h1 data-cms="admission.hero.title">Admission</h1>
+      <p class="page-hero-desc" data-cms="admission.hero.description">Semua yang perlu kamu tahu untuk mendaftar di IBM Institut Asia Malang, dari langkah pendaftaran sampai biaya kuliah.</p>
+      <nav class="jump-nav" aria-label="Lompat ke bagian">
+        <a href="#steps" data-cms="admission.nav.steps">Langkah Pendaftaran</a>
+        <a href="#documents" data-cms="admission.nav.documents">Dokumen</a>
+        <a href="#scholarship" data-cms="admission.nav.scholarship">Beasiswa</a>
+        <a href="#tuition" data-cms="admission.nav.tuition">Biaya Pendidikan</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============ LANGKAH PENDAFTARAN ============ -->
+  <section class="section" id="steps" aria-labelledby="steps-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="steps-title" data-cms="admission.steps.title">Daftar Online atau Offline</h2>
+        <p class="lead" data-cms="admission.steps.description">Pilih jalur pendaftaran yang paling sesuai untuk kamu.</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tabs-nav" role="tablist" aria-label="Jalur pendaftaran">
+          <button class="tab-btn" type="button" role="tab" id="tab-online" aria-selected="true" aria-controls="panel-online" data-cms="admission.steps.tab_online">Pendaftaran Online</button>
+          <button class="tab-btn" type="button" role="tab" id="tab-offline" aria-selected="false" aria-controls="panel-offline" tabindex="-1" data-cms="admission.steps.tab_offline">Pendaftaran Offline</button>
+        </div>
+        <div role="tabpanel" id="panel-online" aria-labelledby="tab-online">
+          <ol class="steps" data-collection="steps_online"></ol>
+        </div>
+        <div role="tabpanel" id="panel-offline" aria-labelledby="tab-offline" hidden>
+          <ol class="steps" data-collection="steps_offline"></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DOKUMEN PENDAFTARAN ============ -->
+  <section class="section section-white" id="documents" aria-labelledby="documents-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="documents-title" data-cms="admission.documents.title">Berkas yang Perlu Disiapkan</h2>
+        <p class="lead" data-cms="admission.documents.description">Pastikan seluruh dokumen berikut sudah lengkap sebelum mendaftar.</p>
+      </div>
+      <ul class="doc-grid" data-collection="documents" data-empty="hide"></ul>
+    </div>
+  </section>
+
+  <!-- ============ BEASISWA ============ -->
+  <section class="section" id="scholarship" aria-labelledby="scholarship-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="scholarship-title" data-cms="admission.scholarship.title">Dua Jalur Beasiswa Tersedia</h2>
+        <p class="lead" data-cms="admission.scholarship.description">Pilih jalur beasiswa yang sesuai dengan latar belakangmu.</p>
+      </div>
+      <div class="scholarship-grid" data-collection="scholarships" data-empty="hide"></div>
+    </div>
+  </section>
+
+  <!-- ============ BIAYA PENDIDIKAN ============ -->
+  <section class="section section-white" id="tuition" aria-labelledby="tuition-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="tuition-title" data-cms="admission.tuition.title">Rincian Biaya Perkuliahan</h2>
+        <p class="lead" data-cms="admission.tuition.description">Estimasi biaya pendidikan penuh per program studi. Biaya dapat berubah mengikuti kebijakan kampus tahun berjalan.</p>
+      </div>
+      <div class="table-wrap" data-collection="tuition"></div>
+      <p class="table-note" data-cms="admission.tuition.note">Belum termasuk potongan beasiswa. Hubungi bagian admisi untuk simulasi biaya sesuai jalur beasiswa yang kamu ambil.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/fallback-data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/cms.js"></script>
+<script src="assets/js/ui.js"></script>
+</body>
+</html>
