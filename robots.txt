@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Setelah domain aktif, tambahkan baris berikut (ganti dengan domain Anda):
+# Sitemap: https://domainanda.ac.id/sitemap.xml

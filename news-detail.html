@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" class="cms-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-cms="news_detail.meta.title">News Article — IBM Malang Asia Institute</title>
+<meta name="description" content="Read the latest news from IBM Malang Asia Institute." data-cms-content="news_detail.meta.description">
+<meta name="theme-color" content="#173671">
+<meta property="og:type" content="article">
+<meta property="og:title" content="News Article — IBM Malang Asia Institute" data-cms-content="news_detail.meta.title">
+<meta property="og:description" content="Read the latest news from IBM Malang Asia Institute." data-cms-content="news_detail.meta.description">
+<meta property="og:image" content="" data-cms-content="global.seo.og_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="news_detail">
+
+<a class="skip-link" href="#main" data-cms="global.a11y.skip_link">Skip to content</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+
+  <!-- Article: header, image, body, share (rendered from the news table) -->
+  <div id="newsArticle" data-collection="news_detail"></div>
+
+  <!-- Shown only when the article is not found -->
+  <section class="section not-found">
+    <div class="container narrow">
+      <p class="eyebrow" data-cms="news_detail.not_found.eyebrow">404</p>
+      <h1 data-cms="news_detail.not_found.title">News article not found</h1>
+      <p class="lead" data-cms="news_detail.not_found.text">The article you are looking for may have been removed or its address has changed.</p>
+      <a class="btn btn-gold" href="news.html" data-cms="news_detail.not_found.cta" data-cms-href="news_detail.not_found.cta_url">View All News</a>
+    </div>
+  </section>
+
+  <!-- Related news -->
+  <section class="section related-news" aria-labelledby="related-title">
+    <div class="container">
+      <div class="section-head section-head-row">
+        <div>
+          <h2 id="related-title" data-cms="news_detail.related.title">Related News</h2>
+        </div>
+        <a class="text-link" href="news.html" data-cms="news_detail.related.more_label" data-cms-href="news_detail.related.more_url">View All News</a>
+      </div>
+      <div class="news-grid" data-collection="news_related" data-empty="hide"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/fallback-data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/cms.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/features.js"></script>
+</body>
+</html>

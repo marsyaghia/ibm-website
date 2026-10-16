@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="cms-pending">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-cms="admission.meta.title">Admission — IBM Malang Asia Institute</title>
+<meta name="description" content="Registration steps, required documents, scholarship information, and tuition fees at IBM Malang Asia Institute." data-cms-content="admission.meta.description">
+<meta name="theme-color" content="#173671">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Admission — IBM Malang Asia Institute" data-cms-content="admission.meta.title">
+<meta property="og:description" content="Registration steps, required documents, scholarship information, and tuition fees at IBM Malang Asia Institute." data-cms-content="admission.meta.description">
+<meta property="og:image" content="" data-cms-content="global.seo.og_image">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="admission">
+
+<a class="skip-link" href="#main" data-cms="global.a11y.skip_link">Skip to content</a>
+<header class="site-header" id="siteHeader"></header>
+
+<main id="main">
+
+  <!-- ============ PAGE HERO ============ -->
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow" data-cms="admission.hero.eyebrow">New Student Admissions</p>
+      <h1 data-cms="admission.hero.title">Admission</h1>
+      <p class="page-hero-desc" data-cms="admission.hero.description">Everything you need to know to apply to IBM Malang Asia Institute, from the registration steps to tuition fees.</p>
+      <nav class="jump-nav" aria-label="Jump to section">
+        <a href="#steps" data-cms="admission.nav.steps">Registration Steps</a>
+        <a href="#documents" data-cms="admission.nav.documents">Documents</a>
+        <a href="#scholarship" data-cms="admission.nav.scholarship">Scholarships</a>
+        <a href="#tuition" data-cms="admission.nav.tuition">Tuition Fees</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ============ REGISTRATION STEPS ============ -->
+  <section class="section" id="steps" aria-labelledby="steps-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="steps-title" data-cms="admission.steps.title">Register Online or Offline</h2>
+        <p class="lead" data-cms="admission.steps.description">Choose the registration path that best suits you.</p>
+      </div>
+
+      <div class="tabs">
+        <div class="tabs-nav" role="tablist" aria-label="Registration path">
+          <button class="tab-btn" type="button" role="tab" id="tab-online" aria-selected="true" aria-controls="panel-online" data-cms="admission.steps.tab_online">Online Registration</button>
+          <button class="tab-btn" type="button" role="tab" id="tab-offline" aria-selected="false" aria-controls="panel-offline" tabindex="-1" data-cms="admission.steps.tab_offline">Offline Registration</button>
+        </div>
+        <div role="tabpanel" id="panel-online" aria-labelledby="tab-online">
+          <ol class="steps" data-collection="steps_online"></ol>
+        </div>
+        <div role="tabpanel" id="panel-offline" aria-labelledby="tab-offline" hidden>
+          <ol class="steps" data-collection="steps_offline"></ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REQUIRED DOCUMENTS ============ -->
+  <section class="section section-white" id="documents" aria-labelledby="documents-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="documents-title" data-cms="admission.documents.title">Documents to Prepare</h2>
+        <p class="lead" data-cms="admission.documents.description">Ensure all the following documents are complete before registering.</p>
+      </div>
+      <ul class="doc-grid" data-collection="documents" data-empty="hide"></ul>
+    </div>
+  </section>
+
+  <!-- ============ SCHOLARSHIPS ============ -->
+  <section class="section" id="scholarship" aria-labelledby="scholarship-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="scholarship-title" data-cms="admission.scholarship.title">Four Scholarship Pathways Available</h2>
+        <p class="lead" data-cms="admission.scholarship.description">Choose the scholarship track that suits your background.</p>
+      </div>
+      <div class="scholarship-grid" data-collection="scholarships" data-empty="hide"></div>
+
+      <div class="action-panels">
+        <div class="action-panel">
+          <h3 data-cms="admission.scholarship.registration_title">Scholarship Registration</h3>
+          <p data-cms="admission.scholarship.registration_description">Ready to apply? Submit your scholarship application online.</p>
+          <div class="btn-row" data-collection="scholarship_registration_buttons"></div>
+        </div>
+        <div class="action-panel">
+          <h3 data-cms="admission.scholarship.test_title">Scholarship Test</h3>
+          <p data-cms="admission.scholarship.test_description">Take the tests required for your scholarship pathway.</p>
+          <div class="btn-row" data-collection="scholarship_test_buttons"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TUITION FEES ============ -->
+  <section class="section section-white" id="tuition" aria-labelledby="tuition-title">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="tuition-title" data-cms="admission.tuition.title">Tuition Fees</h2>
+        <p class="lead" data-cms="admission.tuition.description">Re-registration schedule and semester tuition. Fees are subject to change in accordance with the campus's current-year policies.</p>
+      </div>
+
+      <div class="tuition-grid">
+        <div class="tuition-block">
+          <h3 data-cms="admission.tuition.rereg_title">Re-Registration Fees</h3>
+          <div class="table-wrap" data-collection="reregistration"></div>
+          <ul class="note-list">
+            <li data-cms="admission.tuition.rereg_note_1">Re-registration note 1 will be published here.</li>
+            <li data-cms="admission.tuition.rereg_note_2">Re-registration note 2 will be published here.</li>
+          </ul>
+        </div>
+
+        <div class="tuition-block tuition-semester">
+          <h3 data-cms="admission.tuition.semester_title">Tuition Fee per Semester</h3>
+          <p class="fee-amount" data-cms="admission.tuition.semester_fee">Rp 12.250.000</p>
+          <p class="fee-caption" data-cms="admission.tuition.semester_caption">Flat rate, applied to every semester</p>
+          <p class="fee-note" data-cms="admission.tuition.semester_note">Tuition note will be published here.</p>
+          <ul class="note-list">
+            <li data-cms="admission.tuition.semester_subnote_1">Sub-note 1 will be published here.</li>
+            <li data-cms="admission.tuition.semester_subnote_2">Sub-note 2 will be published here.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer" id="siteFooter"></footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/fallback-data.js"></script>
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/cms.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/features.js"></script>
+</body>
+</html>
