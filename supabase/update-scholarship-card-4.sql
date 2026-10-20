@@ -14,7 +14,7 @@ select 'Scholarship Pathway 4', 'Details Coming Soon',
 where not exists (select 1 from public.scholarships where label = 'Scholarship Pathway 4');
 
 -- 2. Judul section mengikuti jumlah kartu (hanya bila judul belum Anda ubah sendiri)
-update public.site_content set value = 'Four Scholarship Pathways Available'
+update public.site_content set value = 'Four Scholarship Programs'
   where content_key = 'admission.scholarship.title' and value = 'Three Scholarship Pathways Available';
 
 comment on table public.scholarships is 'Admission — scholarship cards (4 on the page): label, title, description, points (JSON array of texts). No button.';

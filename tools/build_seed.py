@@ -91,7 +91,7 @@ JS_LINK_KEYS = {"global.footer.map_url"}
 # Teks bawaan lama (Indonesia/versi awal) yang HARUS diperbarui di database bila belum Anda ubah.
 # {kunci: nilai_lama_persis} → nilai baru diambil dari HTML. Dipakai di migrasi.
 STALE_VALUES = {
-    "admission.scholarship.title": "Four Scholarship Pathways Available",
+    "admission.scholarship.title": "Four Scholarship Programs",
     "admission.tuition.title": "Tuition Fee Details",
     "admission.tuition.description": "Estimated total cost of education per study program. Costs are subject to change in accordance with the campus's current-year policies.",
 }

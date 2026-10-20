@@ -887,7 +887,7 @@ window.IBM_FALLBACK = {
   {
    "content_key": "admission.scholarship.title",
    "kind": "text",
-   "value": "Four Scholarship Pathways Available",
+   "value": "Four Scholarship Programs",
    "alt_text": null
   },
   {

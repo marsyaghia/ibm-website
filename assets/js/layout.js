@@ -3,7 +3,8 @@
    • Header & footer memakai kunci "global.*" (site_content) + tabel footer_links
      dan list_items (group_key = global.opening_hours).
    • Section "IBM News" dan "Our Partners" disisipkan otomatis sebelum footer di
-     semua halaman KECUALI Home (Home memiliki versinya sendiri).
+     halaman dalam (kecuali Home yang punya versinya sendiri). About & Admission
+     hanya memuat "Our Partners".
    Dengan begini menu, logo, alamat, kontak, tautan footer, dan jam buka cukup
    diubah di database dan otomatis berlaku di semua halaman.
    ========================================================================= */
@@ -54,9 +55,20 @@
   function brandHTML(t) {
     var logo = safeUrl(t('global.brand.logo', 'assets/img/logo-mark.svg'));
     return '<a href="index.html" class="brand">' +
-      (logo ? '<img class="brand-mark" src="' + esc(logo) + '" alt="' + esc(t('global.brand.logo_alt', 'Logo')) + '" width="44" height="44">' : '') +
+      (logo ? '<img class="brand-mark" src="' + esc(logo) + '" alt="' + esc(t('global.brand.logo_alt', 'Logo')) + '" height="52">' : '') +
       '<span class="brand-text" translate="no"><strong>' + esc(t('global.brand.name', 'IBM Institut Asia')) + '</strong>' +
       '<small>' + esc(t('global.brand.subname', 'Malang')) + '</small></span></a>';
+  }
+
+  // Tombol mode terang/gelap. Perilakunya ada di assets/js/theme.js (event delegation);
+  // ikon matahari/bulan dipilih lewat CSS berdasarkan atribut data-theme di <html>.
+  var THEME_ICONS =
+    '<svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>' +
+    '<svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7z"/></svg>';
+  function themeToggleHTML(t) {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return '<button class="theme-toggle" type="button" data-theme-toggle aria-pressed="' + (dark ? 'true' : 'false') + '" aria-label="' +
+      esc(t('global.theme.toggle_label', 'Dark mode')) + '" title="' + esc(t('global.theme.toggle_label', 'Dark mode')) + '">' + THEME_ICONS + '</button>';
   }
 
   function headerHTML(t, current) {
@@ -64,9 +76,10 @@
     var h = '';
     h += '<div class="container header-inner">';
     h += brandHTML(t);
-    h += '<button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="' +
+    h += '<div class="header-actions">' + themeToggleHTML(t) +
+      '<button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="' +
       esc(t('global.nav.menu_label', 'Open navigation menu')) + '">' +
-      '<span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button>';
+      '<span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span><span class="nav-toggle-bar"></span></button></div>';
     h += '<nav class="primary-nav" id="primaryNav" aria-label="' + esc(t('global.nav.aria_label', 'Main navigation')) + '"><ul class="nav-list">';
     h += '<li class="nav-item">' + link(t, null, current, 'global.nav.home', 'Home', 'index.html', 'home') + '</li>';
     h += '<li class="nav-item">' + link(t, null, current, 'global.nav.about', 'About IBM', 'about.html', 'about') + '</li>';
@@ -187,9 +200,10 @@
 
   /* ------------------- Section bersama (selain Home) ------------------- */
   // IBM News + Our Partners di atas footer. Halaman News sendiri tidak memuat strip berita
-  // (isinya sudah daftar berita); halaman 404 dibiarkan bersih.
+  // (isinya sudah daftar berita); About & Admission hanya memuat Our Partners (tanpa News);
+  // halaman 404 dibiarkan bersih.
   var PARTNER_PAGES = { about: 1, admission: 1, lecturers: 1, students: 1, gallery_activities: 1, gallery_facilities: 1, news: 1, news_detail: 1 };
-  var NEWS_PAGES = { about: 1, admission: 1, lecturers: 1, students: 1, gallery_activities: 1, gallery_facilities: 1 };
+  var NEWS_PAGES = { lecturers: 1, students: 1, gallery_activities: 1, gallery_facilities: 1 };   // About & Admission: tanpa strip berita
 
   var NEWS_STRIP =
     '<section class="section section-white" id="ibm-news" aria-labelledby="strip-news-title"><div class="container">' +

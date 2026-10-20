@@ -263,7 +263,7 @@
   }
 
   function partnerItem(r, hidden, cls) {
-    var img = imgTag(r.logo_url, hidden ? '' : r.name, ' height="44"');
+    var img = imgTag(r.logo_url, hidden ? '' : r.name, '');
     if (!img) return '';
     var url = safeUrl(r.website_url);
     var attrs = hidden ? ' tabindex="-1"' : '';
@@ -286,9 +286,14 @@
         }).join('') + '</div></div>';
     }
     if (others.length) {
-      el.style.setProperty('--marquee-duration', Math.max(24, others.length * 6) + 's');
-      var a = others.map(function (r) { return partnerItem(r, false); }).join('');
-      var b = others.map(function (r) { return partnerItem(r, true); }).join('');
+      el.style.setProperty('--marquee-duration', Math.max(14, others.length * 3.2) + 's');   // nilai awal; ui.js menyetel ulang berdasarkan lebar nyata
+      // Logo dirapatkan, jadi satu grup diulang sampai cukup panjang agar putaran tetap mulus tanpa celah.
+      var reps = Math.max(1, Math.ceil(10 / others.length));
+      var a = '', b = '';
+      for (var i = 0; i < reps; i++) {
+        a += others.map(function (r) { return partnerItem(r, i > 0); }).join('');
+        b += others.map(function (r) { return partnerItem(r, true); }).join('');
+      }
       h += '<div class="marquee"><div class="marquee-group">' + a + '</div><div class="marquee-group" aria-hidden="true">' + b + '</div></div>';
     }
     return h;
@@ -422,18 +427,23 @@
     var d = fmtDate(r.published_at);
     return d ? '<time class="news-date" datetime="' + esc(r.published_at) + '">' + esc(d) + '</time>' : '';
   }
+  // Beranda & strip berita: kiri = 1 berita utama (kartu), kanan = daftar kartu berita lain.
+  // Keduanya sama tinggi & sejajar (lihat .news-layout di style.css).
   function rNewsHome(rows) {
     if (!rows.length) return '';
     var feat = rows.filter(function (r) { return r.is_featured; })[0] || rows[0];
     var rest = rows.filter(function (r) { return r !== feat; }).slice(0, 3);
     var h = '<article class="news-feature">' + newsCard(newsHref(feat), 'news-feature-link',
-      imgTag(feat.image_url, '', ' width="720" height="450"') + newsDate(feat) +
-      '<h3>' + esc(feat.title) + '</h3>' + (feat.excerpt ? '<p>' + esc(feat.excerpt) + '</p>' : '')) + '</article>';
-    h += '<div class="news-list">' + rest.map(function (r) {
-      return '<article>' + newsCard(newsHref(r), 'news-item',
-        imgTag(r.image_url, '', ' width="248" height="186"') +
-        '<div>' + newsDate(r) + '<h3>' + esc(r.title) + '</h3></div>') + '</article>';
-    }).join('') + '</div>';
+      '<div class="news-media">' + imgTag(feat.image_url, '', ' width="720" height="450"') + '</div>' +
+      '<div class="news-body">' + newsDate(feat) +
+      '<h3>' + esc(feat.title) + '</h3>' + (feat.excerpt ? '<p>' + esc(feat.excerpt) + '</p>' : '') + '</div>') + '</article>';
+    if (rest.length) {
+      h += '<div class="news-list" style="--news-rows:' + rest.length + '">' + rest.map(function (r) {
+        return '<article>' + newsCard(newsHref(r), 'news-item',
+          '<div class="news-thumb">' + imgTag(r.image_url, '', ' width="248" height="186"') + '</div>' +
+          '<div class="news-body">' + newsDate(r) + '<h3>' + esc(r.title) + '</h3></div>') + '</article>';
+      }).join('') + '</div>';
+    }
     return h;
   }
 

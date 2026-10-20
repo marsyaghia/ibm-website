@@ -492,3 +492,31 @@
     if (el && e.target === el) { e.preventDefault(); open(el.getAttribute('data-person-id'), el); }
   });
 })();
+
+/* ---------- Kecepatan strip partner (marquee) ----------
+   Durasi dihitung dari lebar nyata satu grup logo dan kecepatan tetap (px/detik), sehingga
+   lajunya selalu sama — cukup cepat untuk terasa hidup, cukup lambat agar logo mudah dikenali —
+   berapa pun jumlah partner atau lebar layarnya. Ubah SPEED_* untuk mempercepat/memperlambat. */
+(function () {
+  'use strict';
+  var SPEED_DESKTOP = 64;   // px per detik
+  var SPEED_MOBILE = 50;
+  var doc = document;
+
+  function tune() {
+    var speed = window.innerWidth <= 720 ? SPEED_MOBILE : SPEED_DESKTOP;
+    Array.prototype.forEach.call(doc.querySelectorAll('.marquee'), function (m) {
+      var g = m.querySelector('.marquee-group');
+      if (!g || !g.offsetWidth) return;
+      var gap = parseFloat(getComputedStyle(m).columnGap) || 0;
+      var secs = (g.offsetWidth + gap) / speed;
+      m.style.setProperty('--marquee-duration', Math.max(8, secs).toFixed(1) + 's');
+    });
+  }
+
+  var rt;
+  window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(tune, 200); });
+  doc.addEventListener('cms:rendered', function () { requestAnimationFrame(tune); });
+  window.addEventListener('load', tune);
+  if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(tune);
+})();

@@ -89,3 +89,17 @@ Tombol (`.btn`, `.btn-gold`, `.btn-outline`, `.btn-wa`), header + dropdown + CTA
 - Gerakan dimatikan untuk pengguna `prefers-reduced-motion`.
 - Gambar selalu punya `alt` (dari kolom `alt_text`/`alt`), dan `loading="lazy"` kecuali di area paling atas.
 - Target sentuh ≥ 44px pada navigasi ponsel.
+
+## 7. Mode terang / gelap
+
+- Tombol bulan/matahari di header (semua halaman). Pilihan disimpan di `localStorage` (`ibm_theme`) oleh `assets/js/theme.js`, yang dimuat di `<head>` agar tema terpasang sebelum halaman dicat (tanpa kedip).
+- Awal kunjungan: **terang** (identitas desain). Untuk mengikuti pengaturan perangkat, ubah `DEFAULT_THEME` di `theme.js` menjadi `'system'`.
+- Implementasi: token semantik di `:root` (`--surface`, `--surface-alt`, `--link`, `--link-2`, `--fill-ui`, `--header-bg`, `--partner-surface`) ditimpa pada `:root[data-theme="dark"]` (bagian 26 `style.css`). Komponen baru cukup memakai token itu, bukan `#fff`/`--brand` langsung, agar otomatis mengikuti tema.
+- Bilah partner tetap berlatar terang di mode gelap supaya logo (umumnya bertulisan gelap) tetap terbaca.
+
+## 8. Catatan komponen yang direvisi (Okt 2026)
+
+- **Partner (strip bergulir)**: tiap logo memakai slot seragam `--logo-w × --logo-h` (200×72px; 156×58 di HP) dengan `object-fit: contain`; Trent Global College (Official Partner) tidak diubah. Kecepatan: `SPEED_DESKTOP`/`SPEED_MOBILE` (px/detik) di `ui.js`.
+- **IBM News**: dua kolom sama lebar & sama tinggi — kiri 1 berita utama (kartu), kanan daftar kartu berita lain. About & Admission tidak memuat strip News (`NEWS_PAGES` di `layout.js`).
+- **Beasiswa**: kartu compact; baris label · judul · deskripsi · poin disejajarkan antar kartu (subgrid) di desktop.
+- **Teks panjang** rata kanan–kiri (`text-align: justify` + `hyphens: auto`); kartu sempit tetap rata kiri.

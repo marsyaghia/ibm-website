@@ -14,7 +14,8 @@ assets/
   js/config.js           ← ISI: URL + publishable key Supabase
   js/cms.js              Fetch Supabase, escape/sanitasi, render HTML
   js/layout.js           Header & footer dari data (global.*)
-  js/ui.js               Menu, dropdown, akordeon, tab, lightbox
+  js/ui.js               Menu, dropdown, akordeon, tab, lightbox, kecepatan marquee partner
+  js/theme.js            Mode terang/gelap (dimuat di <head>, disimpan di localStorage)
   js/fallback-data.js    Data cadangan (dihasilkan otomatis)
   img/                   Logo & favicon (SVG)
 supabase/
@@ -22,6 +23,7 @@ supabase/
   seed.sql               Data awal (dihasilkan dari tools/build_seed.py)
   update-news-page.sql   Tambahan untuk database lama (halaman News)
   update-news-detail.sql Tambahan untuk database lama (detail berita)
+  update-scholarship-title.sql  Judul section beasiswa → "Four Scholarship Programs" (jalankan sekali)
 tools/build_seed.py      Pembuat seed.sql + migration-2026-10-redesign.sql + fallback-data.js
 tools/migration_ddl.sql  Bagian struktur (DDL) yang disisipkan ke migrasi & schema.sql
 docs/                    Panduan (desain, CMS, deploy)
