@@ -259,12 +259,20 @@
   function slides(root) { return root.querySelectorAll('.carousel-slide'); }
 
   // Posisi scroll awal setiap "halaman" (jumlah kartu yang tampak = 1 halaman)
+  // Halaman dihitung per kartu (bukan per lebar viewport) supaya jumlah titik = ceil(kartu / kartu-per-layar).
   function pageStops(vp) {
     var max = vp.scrollWidth - vp.clientWidth;
     if (max <= 2 || vp.clientWidth < 1) return [0];   // belum tampil / tidak perlu geser
-    var stops = [], step = vp.clientWidth, x = 0;
-    while (x < max - 2 && stops.length < 200) { stops.push(Math.round(x)); x += step; }
-    stops.push(Math.round(max));
+    var sl = vp.querySelectorAll('.carousel-slide');
+    var pitch = sl.length > 1 ? sl[1].offsetLeft - sl[0].offsetLeft : 0;
+    if (pitch < 1) return [0, Math.round(max)];
+    var gap = pitch - sl[0].offsetWidth;
+    var perView = Math.max(1, Math.round((vp.clientWidth + gap) / pitch));
+    var stops = [];
+    for (var i = 0; i < sl.length; i += perView) {
+      var x = Math.min(Math.round(sl[i].offsetLeft - sl[0].offsetLeft), Math.round(max));
+      if (!stops.length || x - stops[stops.length - 1] > 2) stops.push(x);
+    }
     return stops;
   }
 
@@ -297,7 +305,10 @@
       });
     }
     var cur = currentPage(vp, stops);
-    Array.prototype.forEach.call(dots.children, function (b, i) { b.classList.toggle('is-active', i === cur); });
+    Array.prototype.forEach.call(dots.children, function (b, i) {
+      b.classList.toggle('is-active', i === cur);
+      if (i === cur) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
   }
 
   function go(root, dir) {

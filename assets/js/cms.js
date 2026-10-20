@@ -279,7 +279,11 @@
     var h = '';
     if (official.length) {
       h += '<div class="partner-official"><span class="partner-label">' + esc(s.t('global.partners_strip.official_label', 'Official Partner')) + '</span>' +
-        '<div class="partner-official-logos">' + official.map(function (r) { return partnerItem(r, false, 'partner-lg'); }).join('') + '</div></div>';
+        '<div class="partner-official-logos">' + official.map(function (r) {
+          return partnerItem(r, false, 'partner-lg') +
+            '<span class="partner-official-name"><strong>' + esc(r.name) + '</strong>' +
+            '<small>' + esc(s.t('global.partners_strip.official_location', 'Singapore')) + '</small></span>';
+        }).join('') + '</div></div>';
     }
     if (others.length) {
       el.style.setProperty('--marquee-duration', Math.max(24, others.length * 6) + 's');
@@ -354,17 +358,37 @@
   var QUOTE_ICON = '<svg class="testi-quote-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 7H5.5A1.5 1.5 0 0 0 4 8.5V13a1.5 1.5 0 0 0 1.5 1.5H8c0 2-1 3-3 3.5M20 7h-3.5A1.5 1.5 0 0 0 15 8.5V13a1.5 1.5 0 0 0 1.5 1.5H19c0 2-1 3-3 3.5"/></svg>';
   // Beranda: carousel kartu testimoni — kiri foto; kanan atas kutipan, kanan bawah nama & batch.
   // Autoplay-loop dari ui.js.
+  // Foto dari layanan placeholder (mis. placehold.co "Student 15 Photo") bukan foto asli:
+  // diganti placeholder inisial agar teksnya tidak terpotong oleh object-fit: cover.
+  var PLACEHOLDER_HOST = /^https?:\/\/(?:[\w-]+\.)*(?:placehold\.co|placeholder\.com|dummyimage\.com|placekitten\.com|picsum\.photos)\//i;
+  function initials(name) {
+    var w = String(name || '').trim().split(/\s+/).filter(Boolean);
+    if (!w.length) return '';
+    var first = Array.from(w[0])[0] || '';
+    var last = w.length > 1 ? (Array.from(w[w.length - 1])[0] || '') : '';
+    return (first + last).toUpperCase();
+  }
+  // Gambar gagal dimuat (404, offline): tampilkan placeholder inisial. Event "error" tidak bubbling → pakai capture.
+  document.addEventListener('error', function (e) {
+    var el = e.target;
+    if (el && el.tagName === 'IMG' && el.parentNode && el.parentNode.classList.contains('testi-photo')) {
+      el.parentNode.classList.add('is-broken');
+    }
+  }, true);
+
   function rTestimonials(rows, s) {
-    var pre = s.t('global.a11y.photo_prefix', 'Photo');
     var slides = rows.map(function (r) {
       var batch = String(r.batch || r.school || '').trim();   // "school" = kolom lama, dipakai bila batch kosong
-      var photo = imgTag(r.photo_url, pre + ' ' + r.name, ' width="400" height="500"');
-      return '<li class="carousel-slide"><article class="testi-card' + (photo ? '' : ' is-nophoto') + '">' +
-        (photo ? '<div class="testi-photo">' + photo + '</div>' : '') +
+      var url = safeUrl(r.photo_url);
+      // alt kosong: nama sudah tertulis di samping foto, jadi foto bersifat dekoratif
+      var photo = url && !PLACEHOLDER_HOST.test(url) ? imgTag(url, '', ' width="400" height="500"') : '';
+      var ini = initials(r.name);
+      return '<li class="carousel-slide"><article class="testi-card">' +
+        '<div class="testi-photo" aria-hidden="true">' + (ini ? '<span class="testi-initials">' + esc(ini) + '</span>' : '') + photo + '</div>' +
         '<div class="testi-body">' +
         '<div class="testi-quote">' + QUOTE_ICON + '<blockquote>' + esc(r.quote) + '</blockquote></div>' +
-        '<p class="testi-author"><strong>' + esc(r.name) + '</strong>' +
-        (batch ? '<span class="testi-batch">' + esc(batch) + '</span>' : '') +
+        '<p class="testi-author"><strong title="' + esc(r.name) + '">' + esc(r.name) + '</strong>' +
+        (batch ? '<span class="testi-batch" title="' + esc(batch) + '">' + esc(batch) + '</span>' : '') +
         '</p></div></article></li>';
     }).join('');
     return carousel(slides, 'carousel-testi', s);
